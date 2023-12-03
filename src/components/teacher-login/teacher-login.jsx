@@ -2,10 +2,10 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
 import Button from "@/components/Button/button.jsx";
-import styles from "./register-form.module.css";
+import styles from "./teacher-login.module.css";
 import Label from "@/components/Label/label.jsx";
 
-export default function RegForm(props) {
+export default function LoginForm(props) {
     const {
         register,
         handleSubmit,
@@ -34,19 +34,12 @@ export default function RegForm(props) {
                 className={styles.register__input}
             />
 
-            <Label text={'почта'} htmlFor={'email'}></Label>
-            <input
-                id="email"
-                type="email"
-                {...register("email", { required: true })}
-                className={styles.register__input}
-            />
             {errors.login && <span>This field is required</span>}
             {errors.password && <span>This field is required</span>}
-            {errors.email && <span>This field is required</span>}
 
-            <Button type="submit">регистрация</Button>
-            <button className={styles.btn__lower} onClick={props.changeForm}>войти</button>
+            <Button type="submit">вход</Button>
+            <button className={styles.btn__lower} onClick={props.changeForm}>регистрация</button>
+            <button className={styles.btn__lower} onClick={props.changeStudentForm}>Я ученик</button>
         </form>
     );
 };
