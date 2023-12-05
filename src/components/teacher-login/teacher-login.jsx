@@ -4,6 +4,7 @@ import {useForm} from "react-hook-form";
 import Button from "@/components/Button/button.jsx";
 import styles from "./teacher-login.module.css";
 import Label from "@/components/Label/label.jsx";
+import Link from "next/link";
 
 export default function LoginForm(props) {
     const {

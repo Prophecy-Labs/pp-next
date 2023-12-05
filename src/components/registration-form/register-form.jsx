@@ -5,6 +5,7 @@ import Button from "@/components/Button/button.jsx";
 import styles from "./register-form.module.css";
 import Label from "@/components/Label/label.jsx";
 
+
 export default function RegForm(props) {
     const {
         register,
