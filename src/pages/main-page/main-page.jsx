@@ -12,7 +12,7 @@ export default function MainPage() {
             <div className={styles['container']}>
                 <GameCard
                     gameName="Своя игра"
-                    gameDescr="История 10г Первая мировая"
+                    gameDescr="История 10г Первая мировая война"
                     image={require('../../img/jeopardy.svg')}
                     gameType="test"
                 />

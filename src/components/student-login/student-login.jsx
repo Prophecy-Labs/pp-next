@@ -6,6 +6,8 @@ import styles from "./student-login.module.css";
 import Label from "@/components/Label/label.jsx";
 
 export default function StudentForm(props) {
+    const lobbyType = 'student';//использовать student для входа
+
     const {
         register,
         handleSubmit,

@@ -6,10 +6,11 @@ import { useRouter } from 'next/navigation';
 
 export default function GameCard(props) {
     const router = useRouter();
+    const lobbyType = 'teacher';
 
     const handleClick = (e) => {
         e.preventDefault();
-        router.push('/Lobby/Lobby');
+        router.push(`/Lobby/Lobby/`);//использовать teacher для входа
     }
 
     const backgroundClass = props.gameType === "test" ? styles.game__card1 : 
@@ -24,10 +25,10 @@ export default function GameCard(props) {
                 <Image src={props.image} alt="gameImage" className={styles.bg__svg} />
                 <div className={styles['game-hover__div']}>
                     <div className={styles['top-icons']} onClick={handleClick}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="84" viewBox="0 0 70 84" fill="none">
-                            <path d="M5.00839 0.482117C3.99034 -0.136898 2.72162 -0.162477 1.67799 0.420726C0.639476 1.00393 0 2.10383 0 3.29582V80.3094C0 81.5014 0.644594 82.6013 1.68311 83.1845C2.18446 83.4659 2.74208 83.604 3.29459 83.604C3.88802 83.604 4.48657 83.4454 5.00839 83.1231L68.1223 44.6163C69.1045 44.0178 69.7031 42.9537 69.7031 41.8026C69.7031 40.6515 69.1045 39.5875 68.1223 38.9889L5.00839 0.482117ZM6.58918 74.4415V9.16878L60.0802 41.8026L6.58918 74.4415Z" fill="#DBEDF3"/>
-                            </svg>
-                            <span className={styles['hover__span']}>начать</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="84" viewBox="0 0 70 84" fill="none">
+                        <path d="M5.00839 0.482117C3.99034 -0.136898 2.72162 -0.162477 1.67799 0.420726C0.639476 1.00393 0 2.10383 0 3.29582V80.3094C0 81.5014 0.644594 82.6013 1.68311 83.1845C2.18446 83.4659 2.74208 83.604 3.29459 83.604C3.88802 83.604 4.48657 83.4454 5.00839 83.1231L68.1223 44.6163C69.1045 44.0178 69.7031 42.9537 69.7031 41.8026C69.7031 40.6515 69.1045 39.5875 68.1223 38.9889L5.00839 0.482117ZM6.58918 74.4415V9.16878L60.0802 41.8026L6.58918 74.4415Z" fill="#DBEDF3"/>
+                        </svg>
+                        <span className={styles['hover__span']}>начать</span>
                     </div>
                     <div className={styles['bottom-icons']}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="56" height="70" viewBox="0 0 56 70" fill="none">
