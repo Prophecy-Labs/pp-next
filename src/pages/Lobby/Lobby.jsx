@@ -5,10 +5,25 @@ import styles from './lobby.module.css';
 import StudentList from "@/components/student-list/student-list";
 import LobbyView from "@/components/lobbyView/lobbyView";
 import LobbyViewStud from "@/components/LobbyVeiwForStudent/LobbyStudView";
+import { useRouter } from "next/router";
 
 export default function Lobby(props) {
     const teacherName = 'Иванов И. И.';
-    const students = ['Vasya', 'Petya', 'Kolya', 'Goshan', 'Anton', 'Sanya', 'Ilyusha', 'Nikita'];//заменить на данные с бэка
+    const [students, setStudents] = useState([
+        "Vasya",
+        "Petya",
+        "Kolya",
+        "Goshan",
+        "Anton",
+        "Sanya",
+        "Ilyusha",
+        "Nikita",
+    ]);
+
+    const addStudent = () => {
+        setStudents([...students, `Student ${students.length + 1}`]);
+    };
+
     const connectionCode = 1234;//заменить на данные с бэка
     const gameInformation = {
         gameTitle: 'своя игра',
@@ -17,7 +32,13 @@ export default function Lobby(props) {
         image: require('../../img/jeopardy.svg'),
     }
 
-    const [member, setMember] = useState('student');//изменять member можно в любом другом месте
+    const router = useRouter();
+    const startGame = (e) => {
+        e.preventDefault();
+        router.push(`/jeopardy/Jeopardy`);
+    }
+
+    const [member, setMember] = useState('teacher');//изменять member можно в любом другом месте
     const [container, setContainer] = useState(null);
     useEffect(() => {
         if (member === 'teacher') {
@@ -25,7 +46,7 @@ export default function Lobby(props) {
                 <div className="left-container">
                     <span className={styles["top-span"]}>КОД ПОДКЛЮЧЕНИЯ: {connectionCode}</span>
                     <div className={styles['game-settings']}>
-                        <button className={styles['btn-start']}>Начать сессию</button>
+                        <button className={styles['btn-start']} onClick={startGame}>Начать сессию</button>
                         <LobbyView data={gameInformation} />
                         <button className={styles['btn-end']}>закрыть сессию</button>
                     </div>
