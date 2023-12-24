@@ -84,6 +84,7 @@
 .go-answer__btn {
     border-radius: 18px;
     background: #4E585B;
+    border: none;
     padding: 0 20px;
     color: #CCCDCF;
     text-align: center;

@@ -7,25 +7,11 @@ const QuestionJeopardy = (props) => {
   const [member, setMember] = useState("stud");
   const [teacherContent, setTeacherContent] = useState('');
 
-  const handleCountAnswer = () => {
-    //логика зачёта ответа
-    console.log('goshan pishi sam, ya vse ebal etoy huyni');
-  };
-
-  const handleDontCountAnswer = () => {
-    //логика незачёта ответа
-    console.log('i eto toje, yavno logika na beke pishetsya');
+  const handleAnswer = (score) => {
+    //connection.invoke("HandleAnswer", props.teamcode, studentName, props.score);
   }
 
   const [timer, setTimer] = useState(30);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((timer) => timer - 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const [gaveAnswer, setGaveAnswer] = useState(false);
   const [content, setContent] = useState('');
@@ -50,8 +36,8 @@ const QuestionJeopardy = (props) => {
             id=''
           />
           <div className={styles["teacher-buttons"]}>
-            <button className={styles["count-ans__btn"]} onClick={handleCountAnswer}>зачесть ответ</button>
-            <button className={styles["dont-count-ans__btn"]} onClick={handleDontCountAnswer}>
+            <button className={styles["count-ans__btn"]} onClick={handleAnswer}>зачесть ответ</button>
+            <button className={styles["dont-count-ans__btn"]} onClick={handleAnswer}>
               Пропустить
             </button>
           </div>
@@ -71,6 +57,34 @@ const QuestionJeopardy = (props) => {
       );
     }
   }, [gaveAnswer]);
+
+  useEffect(() => {
+    let interval;//твой таймер был написан неправильно, я переписал
+    //теперь таймер останавливается, если кто-то дал ответ на вопрос
+    if (timer > 0 && !gaveAnswer) {
+      interval = setInterval(() => {
+        setTimer((timer) => timer - 1);
+      }, 1000);
+    } else {
+      if (timer > 0) {
+        //чтобы таймер обратно заработал надо после проверки учителя прописать gaveAnswer = false куда-нибудь засунуть
+      } else {
+        if (gaveAnswer) {
+          //connection.invoke(studAnswer); studAnswer - ответ ученика, логика проверки ответа
+          setContent(
+            <div className={styles['teacher-text']}>Время истекло, учитель проверяет ответ</div>
+          );
+        } else {
+          //логика возврата на прошлую страницу
+          setContent (
+            <div className={styles['teacher-text']}>Никто не дал ответ на вопрос</div>
+          );
+        }
+      }
+    }
+
+    return () => clearInterval(interval);
+  }, [timer]);
 
   return (
     <div className={styles["question-window"]}>
