@@ -106,3 +106,25 @@
     font-weight: 400;
     line-height: 50px;
 }
+
+.give-ans__container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.give-answer__btn {
+    border-radius: 18px;
+    background: #4E585B;
+    border: none;
+    padding: 0 20px;
+    color: #CCCDCF;
+    text-align: center;
+    font-family: Srbija Sans;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px;
+    cursor: pointer;
+    user-select: none;
+}

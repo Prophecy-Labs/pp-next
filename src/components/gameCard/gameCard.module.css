@@ -122,6 +122,9 @@
     align-items: center;
     justify-content: space-around;
     gap: 70px;
-    cursor: pointer;
+}
+
+.bottom-icon {
     user-select: none;
+    cursor: pointer;
 }
