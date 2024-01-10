@@ -59,3 +59,25 @@
 .topic-plus:hover {
     background-color: #414d52;
 }
+
+.delete-topic__btn {
+    width: 210px;
+    height: 110px;
+    border-radius: 15px;
+    border: none;
+    display: none;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    color:tomato;
+    background-color: rgba(0, 0, 0, 0.6);
+    text-decoration: underline;
+    font-family: Srbija Sans;
+    font-size: 2rem;
+}
+
+.topic-card:hover > .delete-topic__btn {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+}

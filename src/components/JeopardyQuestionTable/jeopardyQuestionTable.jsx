@@ -8,7 +8,7 @@ export const JeopardyQuestionTable = (props) => {
         for (let i = 0; i < rowLength; i++) {
             if (!row.hasOwnProperty('q' + (100 * (i+1)))) {
                 spaces.push(
-                    <button className={styles['question-plus']} onClick={() => setOpenModal(true)}><span>+</span></button>
+                    <button className={styles['question-plus']} onClick={() => createQuestion(topicID, 'q' + (100 * (i+1)))}><span>+</span></button>
                 );
             } else {
                 spaces.push(
@@ -21,17 +21,17 @@ export const JeopardyQuestionTable = (props) => {
         return spaces;
     }
 
-    const {questionText, setOpenModal, setQuestionText} = props;
+    const {questionText, createQuestion, setQuestionText} = props;
 
     const handleDeleteQuestion = (topicID, questionId) => {
         setQuestionText(prevQuestions => {
             const index = prevQuestions.findIndex(q => q[questionId]);
             if (index !== -1) {
-                const updatedQuestion = {...prevQuestions[index]};
+                const updatedQuestion = {...prevQuestions[topicID]};
                 delete updatedQuestion[questionId];
     
                 const updatedQuestions = [...prevQuestions];
-                updatedQuestions[index] = updatedQuestion;
+                updatedQuestions[topicID] = updatedQuestion;
     
                 return updatedQuestions;
             }

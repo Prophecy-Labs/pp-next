@@ -23,7 +23,6 @@ export const JeopardyModalQuestion = (props) => {
         setNewQuestion("");
         setNewAnswer("");
     }
-
     
     return (
         <div className={classNames(styles['modal-container'], {[styles['open']]: openModal})}>
@@ -34,7 +33,7 @@ export const JeopardyModalQuestion = (props) => {
                 <form className={styles['form-modal']} onSubmit={handleSubmit}>
                     <div className={styles['new-question']}>
                         <span className={styles['new-title']}>вопрос</span>
-                        <textarea className={styles['textarea-question']} placeholder="введите вопрос" onChange={handleTextareaChange} />
+                        <input className={styles['textarea-question']} placeholder="введите вопрос" onChange={handleTextareaChange} />
                     </div>
                     <div className={styles['new-answer']}>
                         <span className={styles['new-title']}>ответ</span>

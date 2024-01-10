@@ -8,6 +8,7 @@ import { JeopardyPriceEditor } from "@/components/JeopardyPriceEditor/jeopardyPr
 import { JeopardyQuestionTable } from "@/components/JeopardyQuestionTable/jeopardyQuestionTable";
 import { JeopardyModalQuestion } from "@/components/JeopardyModalQuestion/jeopardyModalQuestion";
 import { JeopardyModalTopic } from "@/components/JeopardyModalTopic/jeopardyModalTopic";
+import { ButtonsJeopardyEditor } from "@/components/buttonsJeopardyEditor/buttonsJeopardyEditor";
 
 const Editor = (props) => {
 
@@ -59,13 +60,23 @@ const Editor = (props) => {
         setTopics(newTopics);
     }
 
+
+    const [questionId, setQuestionId] = useState(-1);
+    const [topicId, setTopicId] = useState(-1);
     //добавление нового вопроса
-    const questionPlus = (index, newQuestion) => {
-        const newQuestions = [...questionText];
-        newQuestions[index] ||= {};
-        const nextQuestionNumber = Object.keys(newQuestions[index]).length + 1
-        newQuestions[index]['q' + nextQuestionNumber] = newQuestion;
-        setQuestionText(newQuestions);
+    const questionPlus = (newQuestion) => {
+        if (questionId !== -1 && topicId !== -1) {
+            const newQuestions = [...questionText];
+            newQuestions[topicId] ||= {};
+            newQuestions[topicId][questionId] = newQuestion;
+            setQuestionText(newQuestions);
+        }
+    }
+
+    const createQuestion = (topicId, questionId) => {
+        setOpenModalQuestion(true);
+        setQuestionId(questionId);
+        setTopicId(topicId);
     }
 
     const content = ['100', '200', '300', '400', '500', '600'];
@@ -73,14 +84,28 @@ const Editor = (props) => {
     return (
         <>
             <Header />
-            <JeopardyModalQuestion openModal={openModalQuestion} questionPlus={questionPlus} setOpenModal={setOpenModalQuestion} />
+            <JeopardyModalQuestion 
+            openModal={openModalQuestion} 
+            questionPlus={questionPlus} 
+            setOpenModal={setOpenModalQuestion} 
+            questionIdid={questionId}
+            topicId={topicId} />
             <JeopardyModalTopic openModal={openModalTopic} topicPlus={topicPlus} setOpenModal={setOpenModalTopic} />
             <main className={styles['main-container']}>
-                <JeopardyTopicEditor topics={topics} setOpenModal={setOpenModalTopic} />
+                <JeopardyTopicEditor 
+                    topics={topics} 
+                    setOpenModal={setOpenModalTopic} 
+                    setTopics={setTopics} 
+                    setQuestionText={setQuestionText}
+                    questionText={questionText} />
                 <div className={styles['question-container']}>
                     <JeopardyPriceEditor content={content} />
-                    <JeopardyQuestionTable questionText={questionText} setOpenModal={setOpenModalQuestion} setQuestionText={setQuestionText} />
+                    <JeopardyQuestionTable 
+                    questionText={questionText}
+                    setQuestionText={setQuestionText}
+                    createQuestion={createQuestion} />
                 </div>
+                <ButtonsJeopardyEditor />
             </main>
             <Footer />
         </>

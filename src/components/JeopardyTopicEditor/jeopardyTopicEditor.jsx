@@ -3,7 +3,7 @@ import styles from './jeopardyTopicEditor.module.css';
 
 export const JeopardyTopicEditor = (props) => {
 
-    const {topics, setOpenModal} = props;
+    const {topics, setOpenModal, setTopics, setQuestionText, questionText} = props;
     const [content, setContent] = useState(null);
     useEffect(() => {
         if (topics.length < 6) {
@@ -15,6 +15,13 @@ export const JeopardyTopicEditor = (props) => {
         }
     }, [topics]);
 
+    const handleDeleteTopic = (id) => {
+        const updatedTopics = topics.filter((topic, index) => index !== id); 
+        const updatedQuestions = questionText.filter((question, index) => index !== id);
+        setQuestionText(updatedQuestions);
+        setTopics(updatedTopics);
+    }
+
 
     return (
         <div className={styles['topic-container']}>
@@ -23,6 +30,7 @@ export const JeopardyTopicEditor = (props) => {
                 return (
                     <div key={id} className={styles['topic-card']}>
                         {topic}
+                        <button className={styles['delete-topic__btn']} onClick={() => handleDeleteTopic(id)}>Удалить</button>
                     </div>
                 )
             })}
