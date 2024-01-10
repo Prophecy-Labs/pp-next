@@ -107,6 +107,7 @@ const Editor = (props) => {
                 </div>
                 <ButtonsJeopardyEditor />
             </main>
+            <button className={styles['save__btn']}>сохранить игру</button>
             <Footer />
         </>
     );
