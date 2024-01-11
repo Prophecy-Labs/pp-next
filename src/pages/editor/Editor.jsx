@@ -107,7 +107,12 @@ const Editor = (props) => {
                 </div>
                 <ButtonsJeopardyEditor />
             </main>
-            <button className={styles['save__btn']}>сохранить игру</button>
+            <div className={styles['game-settings']}>
+                <label>
+                    <input type="text" placeholder="введите название игры" className={styles['game-name__input']} />
+                </label>
+                <button className={styles['save__btn']}>сохранить игру</button>
+            </div>
             <Footer />
         </>
     );
