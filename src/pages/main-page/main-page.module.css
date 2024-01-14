@@ -1,5 +1,6 @@
 .container {
-    margin: 5% 5%;
+    grid-row: 1;
+    padding: 5% 5% 5% 5%;
     display: grid;
     justify-content: center; 
     grid-auto-flow: row dense;
