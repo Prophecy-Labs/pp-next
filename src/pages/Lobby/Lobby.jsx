@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "@/components/header/header";
-import Footer from "@/components/footer/footer";
+import { HeaderLobby } from "@/components/headerLobby/HeaderLobby";
 import styles from './lobby.module.css';
 import StudentList from "@/components/student-list/student-list";
 import LobbyView from "@/components/lobbyView/lobbyView";
@@ -69,12 +68,11 @@ export default function Lobby(props) {
 
     return (
         <>
-            <Header />
+            <HeaderLobby />
             <div className={styles['container']}>
                 {container}
                 <StudentList students={students} className={styles['student-list']} />
             </div>
-            <Footer/>
         </>
     )
 }

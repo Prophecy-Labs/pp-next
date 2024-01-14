@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from './Jeopardy.module.css';
-import Header from "@/components/header/header";
-import Footer from "@/components/footer/footer";
+import { HeaderLobby } from "@/components/headerLobby/HeaderLobby";
 import GameTable from "@/components/gameTable/gameTable";
 import StudListJeopardy from "@/components/studentListJeopardy/studentListJeopardy";
 
@@ -107,14 +106,13 @@ const Jeopardy = (props) => {
 
     return (
         <>
-            <Header/>
+            <HeaderLobby />
             {content}
             <div className={styles['container']}>
                 <p className={styles['game-title']}>{gameName}</p>
                 <GameTable gameContent={gameContent} />
                 <StudListJeopardy studList={studList} className={styles['stud-list']} />
             </div>
-            <Footer/>
         </>
     );
 }
